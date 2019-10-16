@@ -1,0 +1,5 @@
+# Creates a screenshot on the connected device and copies it over to the current folder
+
+adb shell screencap -p /sdcard/screen.png
+adb pull /sdcard/screen.png screenshot.png
+adb shell rm /sdcard/screen.png
