@@ -1,8 +1,6 @@
 from PIL import Image, ImageDraw
 from PIL import ImageFont
 
-SHRINK = 114
-
 
 class DeviceFrame(object):
     def __init__(self, name):
@@ -15,13 +13,13 @@ class DeviceFrame(object):
         rgb_im = self.image.convert('RGB')
         l = r = int(self.image.size[0] / 2)
         u = d = int(self.image.size[1] / 2)
-        while self._is_white_pixel(rgb_im, l-1, u):
+        while self._is_white_pixel(rgb_im, l-1, (u+d)//2):
             l -= 1
-        while self._is_white_pixel(rgb_im, r+1, u):
+        while self._is_white_pixel(rgb_im, r+1, (u+d)//2):
             r += 1
-        while self._is_white_pixel(rgb_im, r, u-1):
+        while self._is_white_pixel(rgb_im, (l+r)//2, u-1):
             u -= 1
-        while self._is_white_pixel(rgb_im, r, d+1):
+        while self._is_white_pixel(rgb_im, (l+r)//2, d+1):
             d += 1
         return l, u, r+1, d+1
 
@@ -33,8 +31,10 @@ class DeviceFrame(object):
 
 
 class FramedImage(object):
-    def __init__(self, background_name="default", output_name="output"):
-        self.background = Image.open(f"backgrounds/{background_name}.jpg")
+    def __init__(self, background_name="default.png", output_name="output", size=None):
+        self.background = Image.open(f"backgrounds/{background_name}")
+        if size:
+            self.background = self.background.resize(size)
         self.output_name = output_name
         self.img_draw = ImageDraw.Draw(self.background)
 
@@ -43,23 +43,29 @@ class FramedImage(object):
         f_size = image.size
         size = (b_size[0], int(f_size[1] * (b_size[0] / f_size[0])))
         image = image.resize(size)
-        self.background.paste(image, (0, 500), image)
+        self.background.paste(image, (0, 400), image)
 
-    def add_text(self, text):
-        fnt = ImageFont.truetype('src/Fulbo-Argenta.otf', 60)
-        self.img_draw.text((64, 64), text, fill='white', font=fnt)
+    def add_text(self, title, text):
+        title_size = 60
+        fnt = ImageFont.truetype('fonts/MYRIADPRO-BOLDCOND.otf', title_size)
+        self.img_draw.text((64, 64), title, fill='white', font=fnt)
+        fnt = ImageFont.truetype('fonts/HelveticaNeueLTPro-LtCn.otf', 40)
+        self.img_draw.text((64, 64 + title_size), text, fill='white', font=fnt)
 
     def save(self):
         self.background.save(f"{self.output_name}.png")
 
 
 if __name__ == '__main__':
-    # frame = DeviceFrame("pixel2")
+    screenshot = Image.open("screenshot.png")
+    # frame = DeviceFrame("nexus6p")
     # frame = DeviceFrame("nexus5x")
-    frame = DeviceFrame("nexus6p")
-    frame.set_screenshot(Image.open("screenshot.png"))
+    frame = DeviceFrame("pixel2xl")
+    # frame = DeviceFrame("nexus9")
+    frame.set_screenshot(screenshot)
 
-    framed_image = FramedImage()
+    framed_image = FramedImage(background_name="frame_dog_paws.png", size=screenshot.size)
     framed_image.set_device_frame(frame.image)
-    framed_image.add_text("Zooplus Android App")
+    framed_image.add_text("Zooplus Android App",
+                          "Von überall bequem und schnell durch\nmehr als 8.000 Produkte für Ihr Haustier stöbern")
     framed_image.save()
