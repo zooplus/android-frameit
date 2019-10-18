@@ -12,7 +12,7 @@ def main():
     for device in ("phone", "7inch", "10inch"):
         FramedImage(background_name="frame_dog_paws.png", frame=device_to_frame[device],
                     screen_shot=f"screenshot_{device}.png", output_name=f"output_{device}") \
-            .add_text("BOAHSDFKJHSJKFHDJKSHFKJ",
+            .add_text("Zooplus Android App",
                       "Von überall bequem und schnell durch\nmehr als 8.000 Produkte für Ihr Haustier stöbern",
                       title_font='fonts/MYRIADPRO-BOLDCOND.otf', text_font='fonts/HelveticaNeueLTPro-LtCn.otf') \
             .save()
