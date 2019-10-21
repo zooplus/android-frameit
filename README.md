@@ -7,7 +7,7 @@ Nevertheless, a lot of companies do that for conversion optimization.
 The most famous framing solution is integrated into [fastlane](https://docs.fastlane.tools/actions/frameit/).
 It works well for iOS but unfortunately not for Android. Even though there is enough demand for an
 [Android](https://github.com/fastlane/fastlane/issues/14968) [implementation](https://github.com/fastlane/fastlane/issues/14796),
-at the time of creating this project it did not exists yet.
+at the time of creating this project it did not exist yet.
 
 ## Installation
 You should have Python with [Pillow](https://pillow.readthedocs.io/en/stable/) installed, 
