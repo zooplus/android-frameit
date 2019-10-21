@@ -1,6 +1,10 @@
+"""
+Script for framing the 3 example images.
+"""
+
 from framed_image import FramedImage
 
-# device_frames: nexus9, nexus6p, nexus5x, pixel2xl, wear, ...
+# All available device_frames can be seen in the device_frames folder
 device_to_frame = {
     "phone": "pixel2xl",
     "7inch": "nexus9",
