@@ -4,7 +4,8 @@ Google [recommends not using framed screenshots in Play Store](https://developer
 Nevertheless, a lot of companies do that for conversion optimization. 
 
 ## Installation
-You should have Python with Pillow installed, preferably via [pipenv](https://github.com/pypa/pipenv).
+You should have Python with [Pillow](https://pillow.readthedocs.io/en/stable/) installed, 
+preferably via [pipenv](https://github.com/pypa/pipenv).
 
 ```python
 pipenv install
@@ -12,7 +13,7 @@ pipenv install
 
 
 ## Usage
-Edit the frameit.py configuration to match your needs and run it.
+Edit the src/frameit.py configuration to match your needs and run it.
 
 ```python
 FramedImage(background_name="frame_dog_paws.png", frame=device_to_frame[device],
