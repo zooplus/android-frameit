@@ -11,8 +11,8 @@ from framed_image import FramedImage
 # All available device_frames can be seen in the device_frames folder
 device_to_frame = {
     "phone": "pixel2xl",
-    "sevenInch": "nexus9",
-    "tenInch": "nexus9",
+    "sevenInch": "tablet1200x2048",
+    "tenInch": "tablet1600x2560",
 }
 
 translations = translations.create()
