@@ -2,10 +2,10 @@
 Convert screenshots to include a device frame, background image and some text. The existing files are overwritten.
 """
 
-import sys
 import os
-from framed_image import FramedImage
+import argparse
 import translations
+from framed_image import FramedImage
 
 
 # All available device_frames can be seen in the device_frames folder
@@ -35,5 +35,17 @@ def frame_fastlane_screenshots(folder):
                     .save()
 
 
+def main():
+    parser = argparse.ArgumentParser(description='Frame screenshots with a device frame, background, etc...')
+    parser.add_argument('folder', nargs="?",
+                        help='specify the base folder where all the screenshots can be found')
+
+    folder = parser.parse_args().folder
+    if folder:
+        frame_fastlane_screenshots(folder)
+    else:
+        parser.parse_args(["-h"])
+
+
 if __name__ == '__main__':
-    frame_fastlane_screenshots(sys.argv[1])
+    main()
