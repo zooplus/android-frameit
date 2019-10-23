@@ -33,11 +33,14 @@ class FramedImage(object):
         self.background.paste(image, (0 - (self._oversize()//2), 450 - (self._oversize()//2)), image)
 
     def add_text(self, title, text, title_font, text_font, title_size=80, text_size=50):
-        fnt = ImageFont.truetype(title_font, title_size)
-        self.img_draw.text((64, 128), title, fill='white', font=fnt)
-        fnt = ImageFont.truetype(text_font, text_size)
-        self.img_draw.text((64, 128 + 32 + title_size), text, fill='white', font=fnt, spacing=20)
+        if title:
+            fnt = ImageFont.truetype(title_font, title_size)
+            self.img_draw.text((64, 128), title, fill='white', font=fnt)
+        if text:
+            fnt = ImageFont.truetype(text_font, text_size)
+            self.img_draw.text((64, 128 + 32 + title_size), text, fill='white', font=fnt, spacing=20)
         return self
 
     def save(self):
-        self.background.save(f"{self.output_name}.png")
+        print(f"writing image to {self.output_name}")
+        self.background.save(f"{self.output_name}")
