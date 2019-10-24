@@ -8,8 +8,8 @@ import translations
 from framed_image import FramedImage
 
 
-# All available device_frames can be seen in the device_frames folder
 device_to_frame = {
+    # All available device_frames can be seen in the device_frames folder
     "phone": "pixel2xl",
     "sevenInch": "tablet1200x2048",
     "tenInch": "tablet1600x2560",

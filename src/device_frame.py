@@ -1,4 +1,10 @@
 from PIL import Image
+from functools import lru_cache
+
+
+@lru_cache(10)
+def image_open(file_name):
+    return Image.open(file_name)
 
 
 class DeviceFrame(object):
@@ -6,7 +12,7 @@ class DeviceFrame(object):
     device frame image, optionally with a screenshot shown
     """
     def __init__(self, name):
-        self.image = Image.open(f"device_frames/{name}.png")
+        self.image = image_open(f"device_frames/{name}.png")
 
     @staticmethod
     def _is_white_pixel(rgb_im, x, y):
