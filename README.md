@@ -19,11 +19,17 @@ pipenv install
 
 
 ## Usage
-Edit the src/frameit.py configuration to match your needs and run it.
+Edit the src/frameit.py configuration to match your needs and run it:
+
+```shell script
+pipenv run python src/frameit.py <path to screenshots> --background default.jpg
+```
+
+Here is an example to convert a single screenshot
 
 ```python
-FramedImage(background_name="frame_dog_paws.png", frame=device_to_frame[device],
-                    screen_shot=f"screenshot_{device}.png", output_name=f"output_{device}") \
+FramedImage(background_name="frame_dog_paws.png", frame="pixel2xl",
+                    screen_shot=f"screenshot_phone.png", output_name=f"output_phone") \
             .add_text("Zooplus Android App",
                       "Von überall bequem und schnell durch\nmehr als 8.000 Produkte für Ihr Haustier stöbern",
                       title_font='fonts/MYRIADPRO-BOLDCOND.otf', text_font='fonts/HelveticaNeueLTPro-LtCn.otf') \
@@ -37,6 +43,12 @@ It will transform a typical screenshot like
 into a framed image with text:
 
 ![Framed](example_framed.png)
+
+For more details on the available parameters type
+
+```shell script
+pipenv run python src/frameit.py -h
+```
 
 ## Credits
 Developed for [Zooplus](https://www.zooplus.de/) by [Ulrich Scheller](https://www.ulrich-scheller.de/)
