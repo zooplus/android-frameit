@@ -1,12 +1,6 @@
 from PIL import Image, ImageDraw
 from PIL import ImageFont
 from device_frame import DeviceFrame
-from functools import lru_cache
-
-
-@lru_cache(10)
-def image_open(file_name):
-    return Image.open(file_name)
 
 
 class FramedImage(object):
@@ -15,12 +9,12 @@ class FramedImage(object):
     """
     def __init__(self, background_name="default.png", output_name="output",
                  frame="pixel2xl", screen_shot=None):
-        self.background = image_open(f"backgrounds/{background_name}")
+        self.background = Image.open(f"backgrounds/{background_name}")
         self.output_name = output_name
         self.frame = frame
         if screen_shot:
             frame = DeviceFrame(frame)
-            self.screen_shot = image_open(screen_shot)
+            self.screen_shot = Image.open(screen_shot)
             frame.set_screen_shot(self.screen_shot)
             self.background = self.background.resize(self.screen_shot.size)
             self.set_device_frame(frame.image)
