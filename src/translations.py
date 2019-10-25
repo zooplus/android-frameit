@@ -1,11 +1,16 @@
 """
 Translations used for the text on framed device screenshots
 """
+import json
+import os
 
 
 class Translations(object):
-    def __init__(self):
+    def __init__(self, filename=None):
         self._translations = {}
+        if filename:
+            with open(os.path.join("translations", filename)) as f:
+                self._translations = json.load(f)
 
     def add(self, filename_part, language, title, message):
         """

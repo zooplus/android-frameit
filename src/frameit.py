@@ -4,7 +4,7 @@ Convert screenshots to include a device frame, background image and some text. T
 
 import os
 import argparse
-import translations
+from translations import Translations
 from framed_image import FramedImage
 
 
@@ -15,10 +15,8 @@ device_to_frame = {
     "tenInch": "tablet1600x2560",
 }
 
-translations = translations.create()
 
-
-def frame_fastlane_screenshots(folder, background):
+def frame_fastlane_screenshots(folder, background, translations):
     """
     Frame all png images inside the given folder, including subfolders
     :param background: background image to use
@@ -42,10 +40,13 @@ def main():
                         help='specify the base folder where all the screenshots can be found')
     parser.add_argument('--background', dest="background", default="default.jpg",
                         help='background image to use')
+    parser.add_argument('--translations', dest="translations", default="default.json",
+                        help='translations file to use')
 
     args = parser.parse_args()
+    translations = Translations(args.translations)
     if args.folder:
-        frame_fastlane_screenshots(args.folder, background=args.background)
+        frame_fastlane_screenshots(args.folder, background=args.background, translations=translations)
     else:
         parser.parse_args(["-h"])
 
