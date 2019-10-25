@@ -19,14 +19,18 @@ device_to_frame = {
 def frame_fastlane_screenshots(folder, background, translations):
     """
     Frame all png images inside the given folder, including subfolders
-    :param background: background image to use
     :param folder: base folder
+    :param background: background image to use
+    :param translations: translations to use
     """
     for root, dirs, files in os.walk(folder):
         for file in files:
             if ".png" in file:
+                frame = "pixel2xl"
                 device = os.path.basename(root).replace("Screenshots", "")
-                FramedImage(background_name=background, frame=device_to_frame[device],
+                if device in device_to_frame:
+                    frame = device_to_frame[device]
+                FramedImage(background_name=background, frame=frame,
                             screen_shot=os.path.join(root, file), output_name=os.path.join(root, file)) \
                     .add_text(translations.get_title(root, file), translations.get_message(root, file),
                               title_font='fonts/MYRIADPRO-BOLDCOND.otf',
