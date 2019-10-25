@@ -9,8 +9,13 @@ class Translations(object):
     def __init__(self, filename=None):
         self._translations = {}
         if filename:
-            with open(os.path.join("translations", filename)) as f:
-                self._translations = json.load(f)
+            for name in (os.path.join("translations", filename), filename):
+                try:
+                    with open(name) as f:
+                        self._translations = json.load(f)
+                        break
+                except FileNotFoundError:
+                    pass
 
     def add(self, filename_part, language, title, message):
         """
@@ -59,23 +64,3 @@ class Translations(object):
         :return: the message to show for given path and filename
         """
         return self._get_translations(path, filename, "message")
-
-
-def create():
-    return Translations() \
-            .add("screen_1", "de-DE", "20 JAHRE ZOOPLUS",
-                 "Von überall bequem und schnell durch\nmehr als 8.000 Produkte für Ihr Haustier stöbern") \
-            .add("screen_3", "de-DE", "IHRE GESPEICHERTEN PRODUKTE",
-                 "Schnell und einfach\nIhre Lieblingsprodukte wiederfinden") \
-            .add("screen_7", "de-DE", "ALLES AUF EINEN BLICK",
-                 "Übersichtliche und detaillierte Informationen\nzu all unseren Produkten") \
-            .add("screen_2", "de-DE", "EINFACH WIEDERBESTELLEN",
-                 "In wenigen Sekunden Ihre bereits\ngekauften Produkte nochmals bestellen") \
-            .add("screen_1", "en-GB", "WELCOME",
-                 "Pick your pet's favorite products\nout of more than 8.000 items") \
-            .add("screen_3", "en-GB", "YOUR SAVED PRODUCTS",
-                 "Access your favorite products easily") \
-            .add("screen_7", "en-GB", "EVERYTHING AT A GLANCE",
-                 "Detailed information to all of our products") \
-            .add("screen_2", "en-GB", "REORDER EASILY",
-                 "Reorder products with a few simple taps")

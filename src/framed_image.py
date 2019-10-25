@@ -9,7 +9,12 @@ class FramedImage(object):
     """
     def __init__(self, background_name="default.png", output_name="output",
                  frame="pixel2xl", screen_shot=None):
-        self.background = Image.open(f"backgrounds/{background_name}")
+        for name in (f"backgrounds/{background_name}", background_name):
+            try:
+                self.background = Image.open(name)
+                break
+            except FileNotFoundError:
+                pass
         self.output_name = output_name
         self.frame = frame
         if screen_shot:
