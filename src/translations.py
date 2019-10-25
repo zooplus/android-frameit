@@ -44,7 +44,7 @@ class Translations(object):
         for filename_part in self._translations:
             if filename_part in filename:
                 for language in self._translations[filename_part]:
-                    if f"/{language}/" in path + "/" or f"/{language}_" in path:
+                    if f"/{language}/" in path + "/" or f"/{language}-" in path:
                         d = self._translations[filename_part][language]
                         if d:
                             return d[key]
