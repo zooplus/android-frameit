@@ -4,5 +4,10 @@
       "title": "DEFAULT TRANSLATIONS",
       "message": "Can be edited in the translations folder"
     }
+  },
+  "onlymessage": {
+    "en": {
+      "message": "there is no title"
+    }
   }
 }

@@ -46,7 +46,7 @@ class Translations(object):
                 for language in self._translations[filename_part]:
                     if f"/{language}/" in path + "/" or f"/{language}-" in path:
                         d = self._translations[filename_part][language]
-                        if d:
+                        if d and key in d:
                             return d[key]
 
     def get_title(self, path, filename):

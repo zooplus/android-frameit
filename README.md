@@ -29,7 +29,7 @@ Here is an example to convert a single screenshot
 
 ```python
 FramedImage(background_name="frame_dog_paws.png", frame="pixel2xl",
-                    screen_shot=f"screenshot_phone.png", output_name=f"output_phone") \
+            screen_shot="screenshot_phone.png", output_name="output_phone") \
             .add_text("Zooplus Android App",
                       "Von überall bequem und schnell durch\nmehr als 8.000 Produkte für Ihr Haustier stöbern",
                       title_font='fonts/MYRIADPRO-BOLDCOND.otf', text_font='fonts/HelveticaNeueLTPro-LtCn.otf') \

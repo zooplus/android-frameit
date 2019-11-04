@@ -15,8 +15,7 @@ class TranslationsTest(unittest.TestCase):
     def test_load_from_file(self):
         translations = Translations(filename="default.json")
         self.assertEqual(translations.get_title("any/path/with/en-GB/asdf", "screenshot.png"), "DEFAULT TRANSLATIONS")
-
-
+        self.assertIsNone(translations.get_title("any/path/with/en-GB/asdf", "onlymessage.png"))
 
 
 if __name__ == '__main__':
