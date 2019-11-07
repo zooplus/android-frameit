@@ -12,7 +12,7 @@ class Translations(object):
             for name in (os.path.join("translations", filename), filename):
                 try:
                     with open(name) as f:
-                        self._translations = json.load(f)
+                        self._translations = json.load(f, encoding='utf-8')
                         break
                 except FileNotFoundError:
                     pass
