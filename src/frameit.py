@@ -34,7 +34,7 @@ def frame_fastlane_screenshots(folder, background, translations):
                             screen_shot=os.path.join(root, file), output_name=os.path.join(root, file)) \
                     .add_text(translations.get_title(root, file), translations.get_message(root, file),
                               title_font='fonts/MYRIADPRO-BOLDCOND.otf',
-                              text_font='fonts/Helvetica.ttf') \
+                              text_font='fonts/HelveticaNeueLTPro-LtCn.otf') \
                     .save()
 
 
