@@ -15,7 +15,7 @@ class Translations(object):
                         self._translations = json.load(f, encoding='utf-8')
                         break
                 except FileNotFoundError:
-                    pass
+                    print(f"Error: file {filename} not found")
 
     def add(self, filename_part, language, title, message):
         """
